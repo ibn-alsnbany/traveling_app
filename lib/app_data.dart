@@ -1,9 +1,8 @@
-// ignore_for_file: unnecessary_const
-import 'package:flutter/material.dart';
 import 'package:traveling_app/models/category.dart';
 import './models/trip.dart';
 
-const Categories_data = const [
+// ignore: constant_identifier_names
+const Categories_data = [
   Category(
     id: 'c1',
     title: 'جبال',
@@ -42,7 +41,8 @@ const Categories_data = const [
   ),
 ];
 
-const Trips_data = const [
+// ignore: constant_identifier_names
+const Trips_data = [
   Trip(
     id: 'm1',
     categories: ['c1'],

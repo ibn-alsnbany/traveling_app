@@ -6,7 +6,7 @@ class CategoryItem extends StatelessWidget {
   final String title;
   final String imageUrl;
 
-  // ignore: prefer_const_constructors_in_immutables
+  // ignore: prefer_const_constructors_in_immutables, use_key_in_widget_constructors
   CategoryItem(this.id, this.title, this.imageUrl);
 
   void selectCategory(BuildContext ctx) {

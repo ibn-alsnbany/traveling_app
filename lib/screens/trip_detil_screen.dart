@@ -1,6 +1,7 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 import '../app_data.dart';
-import '../models/trip.dart';
 
 class TripDetillScreen extends StatelessWidget {
   static const screenRoute = '/trip-detil';
@@ -33,10 +34,12 @@ class TripDetillScreen extends StatelessWidget {
     final selectedTrip = Trips_data.firstWhere((trip) => trip.id == tripId);
 
     return Scaffold(
+      // ignore: unnecessary_string_interpolations
       appBar: AppBar(title: Text('${selectedTrip.title}')),
       body: SingleChildScrollView(
         child: Column(
           children: [
+            // ignore: sized_box_for_whitespace
             Container(
               height: 300,
               width: double.infinity,

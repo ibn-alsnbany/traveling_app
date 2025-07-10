@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import '../screens/trip_detil_screen.dart';
 import '../models/trip.dart';
@@ -10,7 +12,8 @@ class TripItem extends StatelessWidget {
   final TripType tripType;
   final Season season;
 
-  TripItem({
+  // ignore: use_key_in_widget_constructors
+  const TripItem({
     required this.id,
     required this.title,
     required this.imageUrl,
@@ -23,20 +26,17 @@ class TripItem extends StatelessWidget {
     switch (season) {
       case Season.Winter:
         return 'شناء';
-        break;
 
       case Season.Spring:
         return 'ربيع';
-        break;
 
       case Season.Summer:
         return 'صيف';
-        break;
 
       case Season.Autumn:
         return 'خريف';
-        break;
-      default:
+
+        // ignore: dead_code
         return 'غير معروف';
     }
   }
@@ -45,21 +45,15 @@ class TripItem extends StatelessWidget {
     switch (tripType) {
       case TripType.Exploration:
         return 'استكشاف ';
-        break;
 
       case TripType.Recovery:
         return 'نقاهة';
-        break;
 
       case TripType.Activities:
         return 'انشطة';
-        break;
 
       case TripType.Therapy:
         return 'معالجة';
-        break;
-      default:
-        return 'غير معروف';
     }
   }
 

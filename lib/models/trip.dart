@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 enum Season { Winter, Spring, Summer, Autumn }
 
 enum TripType { Exploration, Recovery, Activities, Therapy }
