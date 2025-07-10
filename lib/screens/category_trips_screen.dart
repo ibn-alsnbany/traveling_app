@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:traveling_app/models/trip.dart';
+import '../models/trip.dart';
+import '../widgets/trip_item.dart';
 import '../app_data.dart';
 
 class CategoryTripsScreen extends StatelessWidget {
@@ -11,7 +12,7 @@ class CategoryTripsScreen extends StatelessWidget {
 
     final categoryId = routeArgument['id'];
     final categoryTitle = routeArgument['title'];
-    final filterTrips =
+    final filteredTrips =
         Trips_data.where((Trip) {
           return Trip.categories.contains(categoryId);
         }).toList();
@@ -19,9 +20,16 @@ class CategoryTripsScreen extends StatelessWidget {
       appBar: AppBar(title: Center(child: Text(categoryTitle!))),
       body: ListView.builder(
         itemBuilder: (ctx, index) {
-          return Text(filterTrips[index].title);
+          return TripItem(
+            id: filteredTrips[index].id,
+            title: filteredTrips[index].title,
+            imageUrl: filteredTrips[index].imageUrl,
+            duration: filteredTrips[index].duration,
+            tripType: filteredTrips[index].tripType,
+            season: filteredTrips[index].season,
+          );
         },
-        itemCount: filterTrips.length,
+        itemCount: filteredTrips.length,
       ),
     );
   }
