@@ -6,6 +6,6 @@ class FavoritesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // ignore: avoid_unnecessary_containers
-    return Container(child: Text('هذة صفحة الرحلات المفضلة'));
+    return Container(child: Center(child: Text('هذة صفحة الرحلات المفضلة')));
   }
 }
