@@ -34,12 +34,12 @@ class _FiltersScreenState extends State<FiltersScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        title: const Text('الفلترة'),
+        title: Center(child: Text('الفلترة')),
       ),
-      drawer: const AppDrawer(),
+      drawer: AppDrawer(),
       body: Column(
         children: [
-          const SizedBox(height: 50),
+          SizedBox(height: 50),
           Expanded(
             child: ListView(
               children: [
