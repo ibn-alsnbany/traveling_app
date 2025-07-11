@@ -1,4 +1,4 @@
-import 'package:traveling_app/models/category.dart';
+import '../models/category.dart';
 import './models/trip.dart';
 
 // ignore: constant_identifier_names
