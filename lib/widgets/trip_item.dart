@@ -11,6 +11,7 @@ class TripItem extends StatelessWidget {
   final int duration;
   final TripType tripType;
   final Season season;
+  final Function removeItem;
 
   // ignore: use_key_in_widget_constructors
   const TripItem({
@@ -20,6 +21,7 @@ class TripItem extends StatelessWidget {
     required this.duration,
     required this.tripType,
     required this.season,
+    required this.removeItem,
   });
 
   String get seasonText {
@@ -60,7 +62,11 @@ class TripItem extends StatelessWidget {
   void selectTrip(BuildContext context) {
     Navigator.of(
       context,
-    ).pushNamed(TripDetillScreen.screenRoute, arguments: id);
+    ).pushNamed(TripDetillScreen.screenRoute, arguments: id).then((result) {
+      if (result != null) {
+        removeItem(result);
+      }
+    });
   }
 
   @override
