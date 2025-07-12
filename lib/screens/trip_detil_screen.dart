@@ -6,6 +6,11 @@ import '../app_data.dart';
 class TripDetillScreen extends StatelessWidget {
   static const screenRoute = '/trip-detil';
 
+  final Function manageFavorite;
+  final Function isFavorite;
+
+  TripDetillScreen(this.manageFavorite, this.isFavorite);
+
   Widget buildSectionTitle(BuildContext context, String titleText) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
@@ -87,10 +92,8 @@ class TripDetillScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.delete),
-        onPressed: () {
-          Navigator.of(context).pop(tripId);
-        },
+        child: Icon(isFavorite(tripId) ? Icons.star : Icons.star_border),
+        onPressed: () => manageFavorite(tripId),
       ),
     );
   }

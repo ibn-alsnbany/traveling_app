@@ -26,6 +26,7 @@ class _MyAppState extends State<MyApp> {
   };
 
   List<Trip> _availableTrips = Trips_data;
+  List<Trip> _favoritesTrips = [];
 
   void _changeFilters(Map<String, bool> filterData) {
     setState(() {
@@ -45,6 +46,26 @@ class _MyAppState extends State<MyApp> {
             return true;
           }).toList();
     });
+  }
+
+  void _manageFavorite(String tripId) {
+    final existingIndex = _favoritesTrips.indexWhere(
+      (trip) => trip.id == tripId,
+    );
+
+    if (existingIndex >= 0) {
+      setState(() {
+        _favoritesTrips.removeAt(existingIndex);
+      });
+    } else {
+      setState(() {
+        _favoritesTrips.add(Trips_data.firstWhere((trip) => trip.id == tripId));
+      });
+    }
+  }
+
+  bool _isFavorite(String id) {
+    return _favoritesTrips.any((trip) => trip.id == id);
   }
 
   @override
@@ -80,10 +101,11 @@ class _MyAppState extends State<MyApp> {
       // home: CategoriesScreen(),
       initialRoute: '/',
       routes: <String, WidgetBuilder>{
-        '/': (ctx) => TabsScreen(),
+        '/': (ctx) => TabsScreen(_favoritesTrips),
         CategoryTripsScreen.screenRoute:
             (ctx) => CategoryTripsScreen(_availableTrips),
-        TripDetillScreen.screenRoute: (ctx) => TripDetillScreen(),
+        TripDetillScreen.screenRoute:
+            (ctx) => TripDetillScreen(_manageFavorite, _isFavorite),
         FiltersScreen.screenRoute:
             (ctx) => FiltersScreen(_filters, _changeFilters),
       },
