@@ -3,10 +3,13 @@
 import 'package:flutter/material.dart';
 import '../models/trip.dart';
 import '../widgets/trip_item.dart';
-import '../app_data.dart';
 
 class CategoryTripsScreen extends StatefulWidget {
   static const screenRoute = '/category-trips';
+
+  final List<Trip> availableTrips;
+
+  CategoryTripsScreen(this.availableTrips);
 
   @override
   State<CategoryTripsScreen> createState() => _CategoryTripsScreenState();
@@ -30,7 +33,8 @@ class _CategoryTripsScreenState extends State<CategoryTripsScreen> {
     final categoryId = routeArgument['id'];
     categoryTitle = routeArgument['title']!;
     displayTrips =
-        Trips_data.where((Trip) {
+        // ignore: avoid_types_as_parameter_names
+        widget.availableTrips.where((Trip) {
           return Trip.categories.contains(categoryId);
         }).toList();
     super.didChangeDependencies();
@@ -45,7 +49,10 @@ class _CategoryTripsScreenState extends State<CategoryTripsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Center(child: Text(categoryTitle!))),
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        title: Center(child: Text(categoryTitle)),
+      ),
       body: ListView.builder(
         itemBuilder: (ctx, index) {
           return TripItem(
