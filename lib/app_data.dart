@@ -42,7 +42,7 @@ const Categories_data = [
 ];
 
 // ignore: constant_identifier_names
-const Trips_data = [
+List<Trip> Trips_data = [
   Trip(
     id: 'm1',
     categories: ['c1'],
@@ -70,6 +70,7 @@ const Trips_data = [
     isInSummer: false,
     isForFamilies: true,
     isInWinter: true,
+    data: {},
   ),
   Trip(
     id: 'm2',

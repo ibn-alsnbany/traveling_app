@@ -5,28 +5,18 @@ import 'package:traveling_app/screens/trip_details_screen.dart';
 import '../screens/trip_detil_screen.dart';
 import '../models/trip.dart';
 
-class TripItem extends StatelessWidget {
-  final String id;
-  final String title;
-  final String imageUrl;
-  final int duration;
-  final TripType tripType;
-  final Season season;
-  //final Function removeItem;
+class TripCard extends StatelessWidget {
+  final Trip trip;
+  //final Function removeCard;
 
   // ignore: use_key_in_widget_constructors
-  const TripItem({
-    required this.id,
-    required this.title,
-    required this.imageUrl,
-    required this.duration,
-    required this.tripType,
-    required this.season,
-    //required this.removeItem,
+  const TripCard({
+    required this.trip,
+    //required this.removeCard,
   });
 
   String get seasonText {
-    switch (season) {
+    switch (trip.season) {
       case Season.Winter:
         return 'شناء';
 
@@ -45,7 +35,7 @@ class TripItem extends StatelessWidget {
   }
 
   String get tripTypeText {
-    switch (tripType) {
+    switch (trip.tripType) {
       case TripType.Exploration:
         return 'استكشاف ';
 
@@ -65,16 +55,16 @@ class TripItem extends StatelessWidget {
     //   context,
     // ).pushNamed(TripDetillScreen.screenRoute, arguments: id).then((result) {
     //   if (result != null) {
-    //     // removeItem(result);
+    //     // removeCard(result);
     //   }
     // });
-    Navigator.of(
-      context,
-    ).pushNamed(TripDetailslScreen.screenRoute, arguments: id).then((result) {
-      if (result != null) {
-        // removeItem(result);
-      }
-    });
+    Navigator.of(context)
+        .pushNamed(TripDetailslScreen.screenRoute, arguments: trip.id)
+        .then((result) {
+          if (result != null) {
+            // removeCard(result);
+          }
+        });
   }
 
   @override
@@ -95,7 +85,7 @@ class TripItem extends StatelessWidget {
                     topRight: Radius.circular(15),
                   ),
                   child: Image.network(
-                    imageUrl,
+                    trip.imageUrl,
                     height: 250,
                     width: double.infinity,
                     fit: BoxFit.cover,
@@ -117,7 +107,7 @@ class TripItem extends StatelessWidget {
                     ),
                   ),
                   child: Text(
-                    title,
+                    trip.title,
                     style: Theme.of(context).textTheme.headlineLarge,
                     overflow: TextOverflow.fade,
                   ),
@@ -133,7 +123,7 @@ class TripItem extends StatelessWidget {
                     children: [
                       Icon(Icons.today, color: Colors.orangeAccent),
                       SizedBox(width: 6),
-                      Text('$duration أيام'),
+                      Text('${trip.duration} أيام'),
                     ],
                   ),
                   Row(

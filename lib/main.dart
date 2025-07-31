@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:traveling_app/screens/trip_details_screen.dart';
 import '../app_data.dart';
 import '../models/trip.dart';
 import '../screens/filters_screen.dart';
@@ -106,6 +107,13 @@ class _MyAppState extends State<MyApp> {
             (ctx) => CategoryTripsScreen(_availableTrips),
         TripDetillScreen.screenRoute:
             (ctx) => TripDetillScreen(_manageFavorite, _isFavorite),
+        TripDetailslScreen.screenRoute: (ctx) {
+          final tripId = ModalRoute.of(ctx)?.settings.arguments as String;
+          final selectedTrip = Trips_data.firstWhere(
+            (trip) => trip.id == tripId,
+          );
+          return TripDetailslScreen(trip: selectedTrip);
+        },
         FiltersScreen.screenRoute:
             (ctx) => FiltersScreen(_filters, _changeFilters),
       },

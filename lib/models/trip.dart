@@ -17,8 +17,8 @@ class Trip {
   final bool isInSummer;
   final bool isInWinter;
   final bool isForFamilies;
-
-  const Trip({
+  late Map<String, dynamic> data;
+  Trip({
     required this.id,
     required this.categories,
     required this.title,
@@ -31,5 +31,16 @@ class Trip {
     required this.isInSummer,
     required this.isInWinter,
     required this.isForFamilies,
-  });
+    Map<String, dynamic> data = const {},
+  }) {
+    // this.data = {'isFavorite': false, ...data};
+    this.data = {...data};
+  }
+  bool get isFavorite {
+    return data["isFavorite"] ??= false;
+  }
+
+  set isFavorite(bool val) {
+    data['isFavorite'] = val;
+  }
 }
